@@ -1,32 +1,169 @@
-# React + TypeScript + Vite
+# 1Fi Marketplace — Customer App
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A React + TypeScript single-page application scaffolded with Vite. This repository contains the frontend for the 1Fi Marketplace customer application — a storefront where customers can browse products and buy using flexible EMI plans.
 
-Currently, two official plugins are available:
+> Note: This README was created/updated to document the project, setup steps, available scripts, and recommended next actions. The project expects the application entry at `src/main.tsx` and a typical React + Vite + Tailwind workflow.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- React + TypeScript (Vite) starter
+- Tailwind CSS for styling
+- Router-ready (react-router-dom included)
+- Linter (oxlint) configured
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech stack
 
-## Expanding the Oxlint configuration
+- React 19 + TypeScript
+- Vite as the dev server & bundler
+- Tailwind CSS + @tailwindcss/typography
+- Oxlint for linting
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Prerequisites
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
+- Node.js 18+ (recommended)
+- npm (comes with Node) or pnpm/yarn
+
+## Quick start
+
+1. Clone the repository
+
+   ```bash
+   git clone https://github.com/pranav172/1Fi-MarketPlace-assignment.git
+   cd 1Fi-MarketPlace-assignment
+   ```
+
+2. Install dependencies
+
+   ```bash
+   npm ci
+   # or
+   npm install
+   ```
+
+3. Start the dev server
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open the app
+
+   Visit http://localhost:5173 (Vite default) — the HTML entry is `index.html` and the app is expected to mount at `#root` from `src/main.tsx`.
+
+## Available scripts
+
+These scripts are defined in package.json:
+
+- `npm run dev` — Start Vite development server with HMR.
+- `npm run build` — Run TypeScript build and produce a production bundle with Vite.
+- `npm run preview` — Preview the production build locally (after `npm run build`).
+- `npm run lint` — Run Oxlint.
+
+## Environment variables
+
+If your application needs runtime configuration (API base URL, feature flags), create a `.env` file in the project root and reference variables using Vite's import.meta.env (for example `VITE_API_BASE_URL`). Example `.env`:
+
+```env
+VITE_API_BASE_URL=https://api.example.com
+VITE_ANALYTICS_KEY=your_key_here
+```
+
+Restart the dev server after adding or changing `.env`.
+
+## Tailwind & PostCSS
+
+This project includes Tailwind configuration (`tailwind.config.js`) and PostCSS (`postcss.config.js`). Tailwind classes can be used inside components. If you change Tailwind config, restart the dev server to pick up changes.
+
+## Project structure (what to expect / recommended)
+
+This repository contains the configuration files and an `index.html` that loads the application from `/src/main.tsx`. If `src/` is not present or incomplete, create the following minimal files to get started:
+
+- src/main.tsx — React entry point that mounts the app into `#root` in `index.html`.
+- src/App.tsx — Main app component and router.
+- src/index.css — Tailwind base imports and any global styles.
+- public/ — Static assets (images, favicon, etc.)
+
+Example minimal `src/main.tsx` (TypeScript + React):
+
+```tsx
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App'
+import './index.css'
+
+const container = document.getElementById('root')!
+createRoot(container).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)
+```
+
+Example minimal `src/App.tsx`:
+
+```tsx
+import React from 'react'
+
+export default function App() {
+  return (
+    <div className="min-h-screen bg-gray-50 text-gray-900">
+      <main className="max-w-4xl mx-auto p-6">
+        <h1 className="text-3xl font-semibold">1Fi Marketplace</h1>
+        <p className="mt-4">Welcome — start building your storefront here.</p>
+      </main>
+    </div>
+  )
 }
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Minimal `src/index.css` for Tailwind:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add project global styles below */
+```
+
+If you want, I can scaffold these minimal files in the repository for you.
+
+## Linting
+
+This project includes `oxlint` in devDependencies and a `.oxlintrc.json` file. Run `npm run lint` to check code style. For TypeScript-aware lint rules, install `oxlint-tsgolint` and enable the `typeAware` option in `.oxlintrc.json` as explained in the original template.
+
+## Building & Deploying
+
+- Build for production: `npm run build`.
+- The `dist/` folder generated by Vite can be deployed to static hosts (Netlify, Vercel, GitHub Pages) or served via any static file server.
+
+Suggested Vercel configuration: Connect the repository on Vercel and set the build command to `npm run build` and the output directory to `dist/`.
+
+## Tests
+
+No tests are included by default. Consider adding vitest or jest for unit tests, and Playwright or Cypress for end-to-end tests.
+
+## Contributing
+
+Contributions are welcome. Suggested workflow:
+
+1. Fork the repo
+2. Create a branch for your feature or bugfix
+3. Add tests and/or follow existing patterns
+4. Commit and open a pull request
+
+## Next steps I can take for you
+
+- Scaffold `src/` minimal files (main.tsx, App.tsx, index.css) so the app runs immediately.
+- Add a sample product list page and router setup.
+- Add GitHub Actions workflow for CI (lint & build).
+
+Tell me which of the above you'd like me to create and I will add those files to the repository.
+
+## License
+
+Add a LICENSE file to declare a license. If you want a permissive license, consider the MIT license.
+
+## Contact
+
+Maintainer: @pranav172

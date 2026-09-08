@@ -1,0 +1,104 @@
+/* Responsive breakpoints - mobile-first */
+@media (min-width: 360px) {
+  .container {
+    max-width: 360px;
+  }
+}
+
+@media (min-width: 390px) {
+  .container {
+    max-width: 390px;
+  }
+}
+
+@media (min-width: 430px) {
+  .container {
+    max-width: 430px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+  
+  /* Center content on tablet/desktop */
+  #root {
+    margin: 0 auto;
+    max-width: 768px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    min-height: 100vh;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+  
+  #root {
+    max-width: 500px; /* Keep mobile-app proportions */
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 20px auto;
+    min-height: calc(100vh - 40px);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Touch target sizes */
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Focus styles for keyboard navigation */
+:focus-visible {
+  outline: 2px solid #712CDC;
+  outline-offset: 2px;
+}
+
+/* Hide focus ring for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(113, 44, 220, 0.2);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
